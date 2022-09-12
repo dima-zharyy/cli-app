@@ -35,7 +35,8 @@ const getContactById = async (contactId) => {
       return;
     }
 
-    console.log(`\nHere is the contact you looked for:\n`.green, contact);
+    console.log(`\nHere is the contact you looked for:\n`.cyan);
+    console.table(contact);
     return contact;
   } catch (error) {
     console.log(error.message);
@@ -53,9 +54,7 @@ const addContact = async (name, email, phone) => {
     try {
       await fs.writeFile(contactsPath, jsonContacts);
       await getContacts();
-      console.log(
-        `\nSuccess! Contact "${name}" has been added to Contacts!`.green
-      );
+      console.log(`\nSuccess! "${name}" has been added to Contacts!`.cyan);
     } catch (error) {
       console.log(error.message);
     }
@@ -87,7 +86,7 @@ const removeContact = async (contactId) => {
       await getContacts();
       console.log(
         `\nSuccess! Contact "${contactToRemove.name}" with id "${contactToRemove.id}" has been removed`
-          .green
+          .cyan
       );
     } catch (error) {
       console.log(error.message);
